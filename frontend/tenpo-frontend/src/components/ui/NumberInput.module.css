@@ -1,0 +1,29 @@
+.wrapper { display: flex; flex-direction: column; flex: 1; gap: 0.4rem; }
+
+.label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.input {
+  background: var(--bg-overlay);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color var(--transition);
+  width: 100%;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--text-faint); }
