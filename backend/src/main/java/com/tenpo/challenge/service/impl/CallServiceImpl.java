@@ -7,6 +7,10 @@ import com.tenpo.challenge.repository.CallRepository;
 import com.tenpo.challenge.service.CallService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +41,14 @@ public class CallServiceImpl implements CallService {
         Call call = CallMapper.dtoToEntity(callDTO);
         Call savedCall = callRepository.save(call);
         return CompletableFuture.completedFuture(CallMapper.entityToDTO(savedCall));
+    }
+
+    @Override
+    public Page<CallDTO> getPaginatedCalls(int page, int size, String sortBy) {
+        log.info("Getting paginated calls with page {}, size {}, and sortBy{}", page, size, sortBy);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Page<Call> callPage = callRepository.findAll(pageable);
+
+        return callPage.map(CallMapper::entityToDTO);
     }
 }

@@ -3,6 +3,7 @@ package com.tenpo.challenge.exception;
 import com.tenpo.challenge.dto.CallDTO;
 import com.tenpo.challenge.dto.ErrorResponseDTO;
 import com.tenpo.challenge.service.CallService;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleGeneral(Exception e) {
         log.error("Error inesperado: {}", e.getMessage(), e);
         return buildError(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor");
+    }
+
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ErrorResponseDTO> handleConstraintViolation(ConstraintViolationException e){
+        log.error("Error de validación_ {}", e.getMessage());
+        return buildError(HttpStatus.BAD_REQUEST, "Error de validación");
+
     }
 
 

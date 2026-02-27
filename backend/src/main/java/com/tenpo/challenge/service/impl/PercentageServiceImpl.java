@@ -77,7 +77,7 @@ public class PercentageServiceImpl implements PercentageService {
 
     @Override
     public void saveBackupPercentage(Double percentage) {
-        log.info("Saving percentage");
+        log.info("Guardando porcentaje en redis: {}", percentage);
         redisTemplate.opsForValue().set(PERCENTAGE_CACHE_KEY + ":backup", percentage);
     }
 }
