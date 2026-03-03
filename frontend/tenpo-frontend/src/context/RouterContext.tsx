@@ -4,6 +4,7 @@ export const ROUTES = {
   HOME:       "home",
   CALCULATOR: "calculator",
   HISTORY:    "history",
+  PAGINATED_HISTORY: "paginated-history",
 } as const;
 
 type RouterContextValue = {

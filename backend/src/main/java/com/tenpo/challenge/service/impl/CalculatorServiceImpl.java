@@ -40,7 +40,6 @@ public class CalculatorServiceImpl implements CalculatorService {
            percentageService.saveBackupPercentage(percentage);
 
            callService.saveCall(CallDTO.builder()
-                           .id(UUID.randomUUID())
                            .timestamp(String.valueOf(LocalDateTime.now()))
                            .endpoint("/api/calculate")
                            .params(params)
@@ -55,7 +54,6 @@ public class CalculatorServiceImpl implements CalculatorService {
        }catch (PercentageUnavailableException exception){
 
            callService.saveCall(CallDTO.builder()
-                           .id(UUID.randomUUID())
                    .timestamp(String.valueOf(LocalDateTime.now()))
                    .endpoint("/api/calculate")
                    .params(params)

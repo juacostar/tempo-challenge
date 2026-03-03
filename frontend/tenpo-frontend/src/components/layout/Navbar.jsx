@@ -5,6 +5,7 @@ const NAV_ITEMS = [
   { route: ROUTES.HOME,       label: "Inicio" },
   { route: ROUTES.CALCULATOR, label: "Calculadora" },
   { route: ROUTES.HISTORY,    label: "Historial" },
+  { route: ROUTES.PAGINATED_HISTORY, label: "Historial paginado" }
 ];
 
 export function Navbar() {

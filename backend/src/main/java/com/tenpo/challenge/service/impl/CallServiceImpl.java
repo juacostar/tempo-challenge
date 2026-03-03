@@ -5,6 +5,7 @@ import com.tenpo.challenge.dto.mapper.CallMapper;
 import com.tenpo.challenge.model.Call;
 import com.tenpo.challenge.repository.CallRepository;
 import com.tenpo.challenge.service.CallService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -35,6 +36,7 @@ public class CallServiceImpl implements CallService {
 
     @Override
     @Async("historyExecutor")
+    @Transactional
     public CompletableFuture<CallDTO> saveCall(CallDTO callDTO) {
 
         log.info("Saving call with response: {}", callDTO.getResponse());
@@ -46,7 +48,7 @@ public class CallServiceImpl implements CallService {
     @Override
     public Page<CallDTO> getPaginatedCalls(int page, int size, String sortBy) {
         log.info("Getting paginated calls with page {}, size {}, and sortBy{}", page, size, sortBy);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.by(sortBy));
         Page<Call> callPage = callRepository.findAll(pageable);
 
         return callPage.map(CallMapper::entityToDTO);

@@ -14,6 +14,12 @@ const CARDS = [
     title: "Historial de API",
     description: "Revisa todas las llamadas de cálculo registradas en tiempo real.",
   },
+  {
+    route: ROUTES.PAGINATED_HISTORY,
+    icon: "◈",
+    title: "Historial de API paginado",
+    description: "Revisa todas las llamadas de cálculo registradas en tiempo real.",
+  },
 ];
 
 export default function Home() {

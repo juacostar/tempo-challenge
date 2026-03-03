@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Call {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+            @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
 
     @Column

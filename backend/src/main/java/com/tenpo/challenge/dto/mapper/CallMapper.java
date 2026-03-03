@@ -10,6 +10,7 @@ public class CallMapper {
 
     public static Call dtoToEntity(CallDTO callDTO){
         return Call.builder()
+                .id(callDTO.getId())
                 .timestamp(parseDate(callDTO.getTimestamp()))
                 .endpoint(callDTO.getEndpoint())
                 .params(callDTO.getParams())
@@ -21,6 +22,7 @@ public class CallMapper {
     public static CallDTO entityToDTO(Call call){
 
         return CallDTO.builder()
+                .id(call.getId())
                 .timestamp(call.getTimestamp().toString())
                 .endpoint(call.getEndpoint())
                 .params(call.getParams())
